@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProgramController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -53,7 +54,7 @@ Route::get('/news', [NewsController::class, 'index']);
 Route::get('/news/{id}', [NewsController::class, 'news']);
 
 Route::prefix('programs')->group(function () {
-    Route::get('/index', [ProductController::class, 'index']);
+    Route::get('/index', [ProgramController::class, 'index']);
 });
 
 Route::get('/about-us', [AboutUsController::class, 'index']);
