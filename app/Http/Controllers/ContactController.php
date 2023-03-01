@@ -13,7 +13,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return "<h2>Contact Us Page</h2>";
+        return view('praktikum1.contact-us');
     }
 
     /**
