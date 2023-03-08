@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ArticleModelController;
 use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EduController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
+use App\Models\ArticleModel;
 use Illuminate\Support\Facades\Route;
 
 
@@ -88,3 +90,5 @@ Route::get('/dashboard', [HomeController::class, 'index']) -> name('dashboard');
 Route::get('/profile', [ProfileController::class, 'index']) -> name('profile');
 
 Route::get('/college', [CollegeController::class, 'index']) -> name('college');
+
+Route::get('/article', [ArticleModelController::class, 'index']);
