@@ -49,6 +49,45 @@
             </p>
           </a>
         </li>
+
+        <li class="nav-item">
+          <a href={{route('article')}} class="nav-link">
+            <i class="nav-icon fas fa-columns"></i>
+            <p>
+              Article
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-table"></i>
+            <p>
+              Menu Data
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href={{route('hobi')}} class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Data Hobi</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href={{route('keluarga')}} class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Data Keluarga</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href={{route('matkul')}} class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Data Mata Kuliah</p>
+              </a>
+            </li>
+          </ul>
+        </li>
     </nav>
     <!-- /.sidebar-menu -->
 </div>

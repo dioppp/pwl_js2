@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Article</h1>
+            <h1>Mata Kuliah</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href={{route('dashboard')}}>Home</a></li>
-              <li class="breadcrumb-item active">Article</li>
+              <li class="breadcrumb-item active">Mata Kuliah</li>
             </ol>
           </div>
         </div>
@@ -26,7 +26,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Headline News</h3>
+              <h3 class="card-title">Daftar Mata Kuliah</h3>
 
               <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -45,19 +45,21 @@
               <table class="table table-hover text-nowrap">
                 <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Judul</th>
-                    <th>Penulis</th>
-                    <th>Tanggal Publish</th>
+                    <th>Kode Mata Kuliah</th>
+                    <th>Nama</th>
+                    <th>Semester</th>
+                    <th>SKS</th>
+                    <th>Jam</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($data as $i)
                       <tr>
-                        <td>{{$i -> id}}</td>
-                        <td>{{$i -> judul}}</td>
-                        <td>{{$i -> penulis}}</td>
-                        <td>{{$i -> tanggal_publish}}</td>
+                        <td>{{$i -> kode_mk}}</td>
+                        <td>{{$i -> nama}}</td>
+                        <td>{{$i -> semester}}</td>
+                        <td>{{$i -> sks}}</td>
+                        <td>{{$i -> jam}}</td>
                       </tr>
                   @endforeach
                 </tbody>

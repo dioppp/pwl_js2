@@ -7,7 +7,10 @@ use App\Http\Controllers\ArticleModelController;
 use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EduController;
+use App\Http\Controllers\HobiModelController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KeluargaModelController;
+use App\Http\Controllers\MatkulModelController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
@@ -91,4 +94,10 @@ Route::get('/profile', [ProfileController::class, 'index']) -> name('profile');
 
 Route::get('/college', [CollegeController::class, 'index']) -> name('college');
 
-Route::get('/article', [ArticleModelController::class, 'index']);
+Route::get('/article', [ArticleModelController::class, 'index']) -> name('article');
+
+Route::get('/hobi', [HobiModelController::class, 'index']) -> name('hobi');
+
+Route::get('/keluarga', [KeluargaModelController::class, 'index']) -> name('keluarga');
+
+Route::get('/matkul', [MatkulModelController::class, 'index']) -> name('matkul');

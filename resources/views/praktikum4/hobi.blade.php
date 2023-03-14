@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Article</h1>
+            <h1>Hobi</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href={{route('dashboard')}}>Home</a></li>
-              <li class="breadcrumb-item active">Article</li>
+              <li class="breadcrumb-item active">Hobi</li>
             </ol>
           </div>
         </div>
@@ -26,7 +26,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Headline News</h3>
+              <h3 class="card-title">Daftar Hobi</h3>
 
               <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -46,18 +46,14 @@
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Judul</th>
-                    <th>Penulis</th>
-                    <th>Tanggal Publish</th>
+                    <th>Nama Hobi</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($data as $i)
                       <tr>
                         <td>{{$i -> id}}</td>
-                        <td>{{$i -> judul}}</td>
-                        <td>{{$i -> penulis}}</td>
-                        <td>{{$i -> tanggal_publish}}</td>
+                        <td>{{$i -> nama_hobi}}</td>
                       </tr>
                   @endforeach
                 </tbody>
