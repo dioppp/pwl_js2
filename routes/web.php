@@ -4,6 +4,8 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArticleModelController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EduController;
@@ -17,6 +19,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
 use App\Models\ArticleModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,73 +34,74 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('beranda');
-// });
+Auth::routes();
 
-Route::get('/about', function () {
-    echo "2141720098 - Frisaranda Diouf Julio";
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('logout', [LoginController::class, 'logout']);
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/about', function () {
+        echo "2141720098 - Frisaranda Diouf Julio";
+    });
+    
+    Route::get('/articles/{id}', function ($id) {
+        echo "Halaman Artikel dengan ID $id";
+    });
+    
+    Route::get('/', [HomeController::class, 'index']);
+    
+    Route::get('/about', [AboutController::class, 'about']);
+    
+    Route::get('/articles/{id}', [ArticleController::class, 'articles']);
+    
+    Route::get('/index', [EduController::class, 'index']);
+    
+    Route::prefix('product')->group(function () {
+        Route::get('/index', [ProductController::class, 'index']);
+    });
+    
+    Route::get('/news', [NewsController::class, 'index']);
+    Route::get('/news/{id}', [NewsController::class, 'news']);
+    
+    Route::prefix('programs')->group(function () {
+        Route::get('/', [ProgramController::class, 'index']);
+    });
+    
+    Route::get('/about-us', [AboutUsController::class, 'index']);
+    
+    Route::resource('contact-us', ContactController::class);
+    
+    Route::get('/home', [HomeController::class, 'index']);
+    
+    Route::get('product', [ProductController::class, 'index']);
+    
+    Route::prefix('product')->group(function($name){
+        Route::get('/{name}', [ProductController::class, 'show']);
+    });
+    
+    Route::get('/news', [NewsController::class, 'index']);
+    Route::get('/news/{id}', [NewsController::class, 'news']);
+    
+    Route::prefix('programs')->group(function($name){
+        Route::get('/{name}', [ProductController::class, 'show']);
+    });
+    
+    Route::get('/about-us', [AboutUsController::class, 'index']);
+    
+    Route::resource('contact-us', ContactController::class);
+    
+    Route::get('/dashboard', [HomeController::class, 'index']) -> name('dashboard');
+    
+    Route::get('/profile', [ProfileController::class, 'index']) -> name('profile');
+    
+    Route::get('/college', [CollegeController::class, 'index']) -> name('college');
+    
+    Route::get('/article', [ArticleModelController::class, 'index']) -> name('article');
+    
+    Route::get('/hobi', [HobiModelController::class, 'index']) -> name('hobi');
+    
+    Route::get('/keluarga', [KeluargaModelController::class, 'index']) -> name('keluarga');
+    
+    Route::get('/matkul', [MatkulModelController::class, 'index']) -> name('matkul');
 });
-
-Route::get('/articles/{id}', function ($id) {
-    echo "Halaman Artikel dengan ID $id";
-});
-
-Route::get('/', [HomeController::class, 'index']);
-
-Route::get('/about', [AboutController::class, 'about']);
-
-Route::get('/articles/{id}', [ArticleController::class, 'articles']);
-
-
-
-Route::get('/index', [EduController::class, 'index']);
-
-Route::prefix('product')->group(function () {
-    Route::get('/index', [ProductController::class, 'index']);
-});
-
-Route::get('/news', [NewsController::class, 'index']);
-Route::get('/news/{id}', [NewsController::class, 'news']);
-
-Route::prefix('programs')->group(function () {
-    Route::get('/', [ProgramController::class, 'index']);
-});
-
-Route::get('/about-us', [AboutUsController::class, 'index']);
-
-Route::resource('contact-us', ContactController::class);
-
-
-Route::get('/home', [HomeController::class, 'index']);
-
-Route::get('product', [ProductController::class, 'index']);
-
-Route::prefix('product')->group(function($name){
-    Route::get('/{name}', [ProductController::class, 'show']);
-});
-
-Route::get('/news', [NewsController::class, 'index']);
-Route::get('/news/{id}', [NewsController::class, 'news']);
-
-Route::prefix('programs')->group(function($name){
-    Route::get('/{name}', [ProductController::class, 'show']);
-});
-
-Route::get('/about-us', [AboutUsController::class, 'index']);
-
-Route::resource('contact-us', ContactController::class);
-
-Route::get('/dashboard', [HomeController::class, 'index']) -> name('dashboard');
-
-Route::get('/profile', [ProfileController::class, 'index']) -> name('profile');
-
-Route::get('/college', [CollegeController::class, 'index']) -> name('college');
-
-Route::get('/article', [ArticleModelController::class, 'index']) -> name('article');
-
-Route::get('/hobi', [HobiModelController::class, 'index']) -> name('hobi');
-
-Route::get('/keluarga', [KeluargaModelController::class, 'index']) -> name('keluarga');
-
-Route::get('/matkul', [MatkulModelController::class, 'index']) -> name('matkul');

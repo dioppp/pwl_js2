@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="card-body">
-          Welcome to Dashboard
+          Welcome, {{auth()->user()->name}}
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
