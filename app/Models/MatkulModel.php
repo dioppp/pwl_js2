@@ -12,4 +12,11 @@ class MatkulModel extends Model
     protected $table='matkul_models';
     protected $primaryKey='kode_mk';
     protected $keyType='string';
+    protected $fillable = [
+        'kode_mk',
+        'nama',
+        'semester',
+        'sks',
+        'jam'
+    ];
 }

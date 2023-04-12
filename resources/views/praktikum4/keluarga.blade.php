@@ -41,27 +41,47 @@
               </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body table-responsive p-0">
-              <table class="table table-hover text-nowrap">
+            <div class="card-body">
+
+              <a href="{{url('keluarga/create')}}" class="btn btn-sm btn-success my-2">Tambah Data</a>
+          
+              <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                    <th>No</th>
                     <th>NIK</th>
                     <th>Nama</th>
                     <th>Tanggal Lahir</th>
                     <th>Jenis Kelamin</th>
                     <th>Hubungan</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($data as $i)
+                  @if($model->count() > 0)
+                    @foreach($model as $i => $m)
                       <tr>
-                        <td>{{$i -> nik}}</td>
-                        <td>{{$i -> nama}}</td>
-                        <td>{{$i -> tanggal_lahir}}</td>
-                        <td>{{$i -> gender}}</td>
-                        <td>{{$i -> hubungan}}</td>
+                        <td>{{++$i}}</td>
+                        <td>{{$m->nik}}</td>
+                        <td>{{$m->nama}}</td>
+                        <td>{{$m->tanggal_lahir}}</td>
+                        <td>{{$m->gender}}</td>
+                        <td>{{$m->hubungan}}</td>
+                        <td>
+                          <!-- Bikin tombol edit dan delete -->
+                          <a href="{{ url('/keluarga/'. $m->nik.'/edit') }}" class="btn btn-sm btn-warning">edit</a>
+          
+                          <form method="POST" action="{{ url('/keluarga/'.$m->nik) }}" >
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">hapus</button>
+                          </form>
+                        </td>
                       </tr>
-                  @endforeach
+                    @endforeach
+                  @else
+                    <tr><td colspan="6" class="text-center">Data tidak ada</td></tr>
+                  @endif
                 </tbody>
               </table>
             </div>

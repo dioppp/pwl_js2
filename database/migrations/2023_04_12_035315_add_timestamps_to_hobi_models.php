@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hobi_models', function (Blueprint $table) {
-            $table->integer('id')->primary();
-            $table->string('nama_hobi', 50)->nullable();
+        Schema::table('hobi_models', function (Blueprint $table) {
+            $table->timestamps();
         });
     }
 
@@ -26,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hobi_models');
+        Schema::table('hobi_models', function (Blueprint $table) {
+            //
+        });
     }
 };

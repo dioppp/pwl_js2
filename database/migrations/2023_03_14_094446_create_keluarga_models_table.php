@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('keluarga_models', function (Blueprint $table) {
             $table->string('nik', 16)->primary();
-            $table->string('nama', 100);
-            $table->date('tanggal_lahir');
-            $table->string('gender', 10);
-            $table->string('hubungan', 20);
+            $table->string('nama', 100)->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('gender', 10)->nullable();
+            $table->string('hubungan', 20)->nullable();
         });
     }
 

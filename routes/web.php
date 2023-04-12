@@ -12,6 +12,7 @@ use App\Http\Controllers\EduController;
 use App\Http\Controllers\HobiModelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KeluargaModelController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatkulModelController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
@@ -99,9 +100,11 @@ Route::middleware(['auth'])->group(function(){
     
     Route::get('/article', [ArticleModelController::class, 'index']) -> name('article');
     
-    Route::get('/hobi', [HobiModelController::class, 'index']) -> name('hobi');
+    Route::resource('/keluarga', KeluargaModelController::class);
     
-    Route::get('/keluarga', [KeluargaModelController::class, 'index']) -> name('keluarga');
-    
-    Route::get('/matkul', [MatkulModelController::class, 'index']) -> name('matkul');
+    Route::resource('/matkul', MatkulModelController::class);
+
+    Route::resource('/hobi', HobiModelController::class);
+
+    Route::resource('/mahasiswa', MahasiswaController::class);
 });

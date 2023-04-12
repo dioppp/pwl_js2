@@ -41,21 +41,39 @@
               </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body table-responsive p-0">
-              <table class="table table-hover text-nowrap">
+            <div class="card-body">
+
+              <a href="{{url('/hobi/create')}}" class="btn btn-sm btn-success my-2">Tambah Data</a>
+          
+              <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <th>No</th>
                     <th>Nama Hobi</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($data as $i)
+                  @if($model->count() > 0)
+                    @foreach($model as $i => $m)
                       <tr>
-                        <td>{{$i -> id}}</td>
-                        <td>{{$i -> nama_hobi}}</td>
+                        <td>{{++$i}}</td>
+                        <td>{{$m->nama_hobi}}</td>
+                        <td>
+                          <!-- Bikin tombol edit dan delete -->
+                          <a href="{{ url('/hobi/'. $m->id.'/edit') }}" class="btn btn-sm btn-warning">edit</a>
+          
+                          <form method="POST" action="{{ url('/hobi/'.$m->id) }}" >
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">hapus</button>
+                          </form>
+                        </td>
                       </tr>
-                  @endforeach
+                    @endforeach
+                  @else
+                    <tr><td colspan="6" class="text-center">Data tidak ada</td></tr>
+                  @endif
                 </tbody>
               </table>
             </div>

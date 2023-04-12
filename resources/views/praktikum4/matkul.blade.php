@@ -41,27 +41,47 @@
               </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body table-responsive p-0">
-              <table class="table table-hover text-nowrap">
+            <div class="card-body">
+
+              <a href="{{url('matkul/create')}}" class="btn btn-sm btn-success my-2">Tambah Data</a>
+          
+              <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                    <th>No</th>
                     <th>Kode Mata Kuliah</th>
                     <th>Nama</th>
                     <th>Semester</th>
                     <th>SKS</th>
                     <th>Jam</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($data as $i)
+                  @if($model->count() > 0)
+                    @foreach($model as $i => $m)
                       <tr>
-                        <td>{{$i -> kode_mk}}</td>
-                        <td>{{$i -> nama}}</td>
-                        <td>{{$i -> semester}}</td>
-                        <td>{{$i -> sks}}</td>
-                        <td>{{$i -> jam}}</td>
+                        <td>{{++$i}}</td>
+                        <td>{{$m->kode_mk}}</td>
+                        <td>{{$m->nama}}</td>
+                        <td>{{$m->semester}}</td>
+                        <td>{{$m->sks}}</td>
+                        <td>{{$m->jam}}</td>
+                        <td>
+                          <!-- Bikin tombol edit dan delete -->
+                          <a href="{{ url('/matkul/'. $m->kode_mk.'/edit') }}" class="btn btn-sm btn-warning">edit</a>
+          
+                          <form method="POST" action="{{ url('/matkul/'.$m->kode_mk) }}" >
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">hapus</button>
+                          </form>
+                        </td>
                       </tr>
-                  @endforeach
+                    @endforeach
+                  @else
+                    <tr><td colspan="6" class="text-center">Data tidak ada</td></tr>
+                  @endif
                 </tbody>
               </table>
             </div>

@@ -69,21 +69,27 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href={{route('hobi')}} class="nav-link">
+              <a href={{route('hobi.index')}} class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Hobi</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href={{route('keluarga')}} class="nav-link">
+              <a href={{route('keluarga.index')}} class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Keluarga</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href={{route('matkul')}} class="nav-link">
+              <a href={{route('matkul.index')}} class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Data Mata Kuliah</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{url('/mahasiswa')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Data Mahasiswa</p>
               </a>
             </li>
           </ul>

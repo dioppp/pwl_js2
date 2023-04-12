@@ -10,6 +10,9 @@ class HobiModel extends Model
     use HasFactory;
 
     protected $table='hobi_models';
-    protected $primaryKey='id';
-    protected $keyType='integer';
+    // protected $primaryKey='id';
+    // protected $keyType='int';
+    protected $fillable = [
+        'nama_hobi'
+    ];
 }

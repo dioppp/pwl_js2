@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('matkul_models', function (Blueprint $table) {
             $table->string('kode_mk', 5)->primary();
-            $table->string('nama', 100);
-            $table->integer('semester');
-            $table->integer('sks');
-            $table->integer('jam');
+            $table->string('nama', 100)->nullable();
+            $table->integer('semester')->nullable();
+            $table->integer('sks')->nullable();
+            $table->integer('jam')->nullable();
         });
     }
 
