@@ -26,7 +26,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Tambah atau Edit Data Mahasiswa</h3>
+              <h3 class="card-title">Tambah Data Mahasiswa</h3>
 
               <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -61,6 +61,15 @@
                         @error('nama')
                             <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
+                    </div>
+
+                    <div class="form-group">
+                      <label for="Kelas">Kelas</label>
+                      <select name="kelas" class="form-control">
+                        @foreach($kelas as $kls)
+                          <option value="{{$kls->id}}">{{$kls->nama_kelas}}</option>
+                        @endforeach
+                      </select>
                     </div>
 
                     <div class="form-group">

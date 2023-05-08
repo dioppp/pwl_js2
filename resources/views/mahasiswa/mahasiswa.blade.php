@@ -51,6 +51,7 @@
                       <th>No</th>
                       <th>NIM</th>
                       <th>Nama</th>
+                      <th>Kelas</th>
                       <th>JK</th>
                       <th>HP</th>
                       <th>Action</th>
@@ -63,10 +64,13 @@
                           <td>{{++$i}}</td>
                           <td>{{$m->nim}}</td>
                           <td>{{$m->nama}}</td>
+                          <td>{{$m->kelas->nama_kelas}}</td>
                           <td>{{$m->jk}}</td>
                           <td>{{$m->hp}}</td>
                           <td>
-                            <!-- Bikin tombol edit dan delete -->
+                            <!-- Bikin tombol show, edit, dan delete -->
+                            <a href="{{ url('/mahasiswa/'. $m->id) }}" class="btn btn-sm btn-info">show</a>
+
                             <a href="{{ url('/mahasiswa/'. $m->id.'/edit') }}" class="btn btn-sm btn-warning">edit</a>
             
                             <form method="POST" action="{{ url('/mahasiswa/'.$m->id) }}" >
