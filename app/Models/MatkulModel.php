@@ -19,4 +19,8 @@ class MatkulModel extends Model
         'sks',
         'jam'
     ];
+
+    public function mahasiswa_matkul(){
+        return $this->hasMany(Mahasiswa_Matakuliah::class, 'matakuliah_id', 'kode_mk');
+    }
 }
