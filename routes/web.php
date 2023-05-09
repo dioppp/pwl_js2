@@ -13,6 +13,7 @@ use App\Http\Controllers\HobiModelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KeluargaModelController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MahasiswaMatakuliahController;
 use App\Http\Controllers\MatkulModelController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
@@ -107,4 +108,6 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/hobi', HobiModelController::class);
 
     Route::resource('/mahasiswa', MahasiswaController::class);
+
+    Route::get('/khs/{ah}', [MahasiswaMatakuliahController::class, 'show']) -> name('mahasiswa.khs');
 });

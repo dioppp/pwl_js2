@@ -69,17 +69,17 @@
                           <td>{{$m->hp}}</td>
                           <td>
                             <!-- Bikin tombol show, edit, dan delete -->
-                            <a href="{{ url('/mahasiswa/'. $m->id) }}" class="btn btn-sm btn-info">Show</a>
+                            <a href="{{ url('/mahasiswa/'. $m->id) }}" class="btn btn-sm btn-primary">Show</a>
 
                             <a href="{{ url('/mahasiswa/'. $m->id.'/edit') }}" class="btn btn-sm btn-warning">Edit</a>
+
+                            <a href="{{ route('mahasiswa.khs', $m->id) }}" class="btn btn-sm btn-secondary">KHS</a>
             
                             <form method="POST" action="{{ url('/mahasiswa/'.$m->id) }}" >
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                             </form>
-
-                            <a href="{{ url('/mahasiswa/'. $m->id.'/show') }}" class="btn btn-sm btn-primary">KHS</a>
                           </td>
                         </tr>
                       @endforeach

@@ -42,6 +42,6 @@ class MahasiswaMatakuliahSeeder extends Seeder
                 'nilai' => '95',
             ],];
 
-        DB::table('mahasiswa_matakuliahs')->insert($mahamatkul);
+        DB::table('mahasiswa__matakuliahs')->insert($mahamatkul);
     }
 }

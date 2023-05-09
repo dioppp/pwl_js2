@@ -48,8 +48,8 @@ class MahasiswaMatakuliahController extends Controller
     public function show($id)
     {
         $mhs = MahasiswaModel::where('id', $id)->first();
-        $mhsmatkul = Mahasiswa_Matakuliah::with('mahasiswa', 'matakuliah')->where('mahasiswa_id', $id)->get();
-        return view('mahasiswa.nilai')->with('mhs', $mhs)->with('mhsmatkul', $mhsmatkul);
+        $mhsmatkul = Mahasiswa_Matakuliah::with('mahasiswa', 'matkul')->where('mahasiswa_id', $id)->get();
+        return view('mahasiswa.show_khs')->with('mhs', $mhs)->with('mhsmatkul', $mhsmatkul);
     }
 
     /**

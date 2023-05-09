@@ -14,51 +14,48 @@
             <br><br>
             <div class="card-header">
                 <div class="card-title">
-                    <div>NIM            : {{$mhs->nim}}</div>
-                    <div>Nama           : {{$mhs->nama}}</div>
-                    <div>Gender         : {{$mhs->jk}}</div>
-                    <div>Tempat Lahir   : {{$mhs->tempat_lahir}}</div>
-                    <div>Tanggil Lahir  : {{$mhs->tanggal_hari}}</div>
-                    <div>Alamat         : {{$mhs->alamat}}</div>
-                    <div>No. HP         : {{$mhs->hp}}</div>
+                    <div><b>Nama</b>   : {{$mhs->nama}}</div>
+                    <div><b>NIM</b>    : {{$mhs->nim}}</div>
+                    <div><b>Kelas</b>  : {{$mhs->kelas->nama_kelas}}</div>
                 </div>
             </div>
-        </div>
 
-            <!-- /.card-header -->
-                    <div class="card-body">
-
-                        <div class="container mt-5">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="card" style="width: 24rem">
-                                    <div class="card-header">Detail Mahasiswa</div>
-                                    <div class="card-body">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"><b>NIM : </b>{{$mhs->nim}}</li>
-                                            <li class="list-group-item"><b>Nama : </b>{{$mhs->nama}}</li>
-                                            <li class="list-group-item"><b>Kelas : </b>{{$mhs->kelas->nama_kelas}}</li>
-                                            <li class="list-group-item"><b>Jenis Kelamin : </b>{{$mhs->jk}}</li>
-                                            <li class="list-group-item"><b>No. HP : </b>{{$mhs->hp}}</li>
-                                        </ul>
-                                    </div>
-                                    <a class="btn btn-success mt-3" href="{{route('mahasiswa.index')}}">Kembali</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <!-- /.card-body -->
-                </div>
-            <!-- /.card -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Mata Kuliah</th>
+                            <th>SKS</th>
+                            <th>Semester</th>
+                            <th>Nilai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if ($mhsmatkul->count() > 0)
+                        @foreach ($mhsmatkul as $m)
+                            <tr>
+                                <td>{{$m->matkul->nama}}</td>
+                                <td>{{$m->matkul->sks}}</td>
+                                <td>{{$m->matkul->semester}}</td>
+                                <td>{{$m->nilai_huruf}}</td>
+                            </tr>
+                        @endforeach
+                        @else
+                        <tr>
+                            <td class="text-center" colspan="4">
+                                Data tidak ada
+                            </td>
+                        </tr>
+                        @endif
+                    </tbody>
+                </table>
+                <br>
+                <a class="btn btn-success mt3" href="{{ route('mahasiswa.index')}}">Kembali</a>
+            </div>
+            <div class="card-footer">
+                Footer
             </div>
         </div>
-        <!-- /.card -->
-
     </section>
-    <!-- /.content -->
+</div>
 @endsection
-
-@push('custom_js')
-<script>
-    alert('Welcome')
-</script>
-@endpush

@@ -22,4 +22,16 @@ class Mahasiswa_Matakuliah extends Model
     public function matkul(){
         return $this->belongsTo(MatkulModel::class, 'matakuliah_id', 'kode_mk');
     }
+
+    public function getNilaiHurufAttribute(){
+        if($this->nilai >= 90){
+            return 'A';
+        } elseif($this->nilai >= 80){
+            return 'B';
+        } elseif($this->nilai >= 70){
+            return 'C';
+        } else {
+            return 'D';
+        }
+    }
 }
