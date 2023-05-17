@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArticleModelController;
+use App\Http\Controllers\ArticleUploadController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CollegeController;
@@ -43,55 +44,55 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('logout', [LoginController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/about', function () {
-        echo "2141720098 - Frisaranda Diouf Julio";
-    });
+    // Route::get('/about', function () {
+    //     echo "2141720098 - Frisaranda Diouf Julio";
+    // });
     
-    Route::get('/articles/{id}', function ($id) {
-        echo "Halaman Artikel dengan ID $id";
-    });
+    // Route::get('/articles/{id}', function ($id) {
+    //     echo "Halaman Artikel dengan ID $id";
+    // });
     
-    Route::get('/', [HomeController::class, 'index']);
+    // Route::get('/', [HomeController::class, 'index']);
     
-    Route::get('/about', [AboutController::class, 'about']);
+    // Route::get('/about', [AboutController::class, 'about']);
     
-    Route::get('/articles/{id}', [ArticleController::class, 'articles']);
+    // Route::get('/articles/{id}', [ArticleController::class, 'articles']);
     
-    Route::get('/index', [EduController::class, 'index']);
+    // Route::get('/index', [EduController::class, 'index']);
     
-    Route::prefix('product')->group(function () {
-        Route::get('/index', [ProductController::class, 'index']);
-    });
+    // Route::prefix('product')->group(function () {
+    //     Route::get('/index', [ProductController::class, 'index']);
+    // });
     
-    Route::get('/news', [NewsController::class, 'index']);
-    Route::get('/news/{id}', [NewsController::class, 'news']);
+    // Route::get('/news', [NewsController::class, 'index']);
+    // Route::get('/news/{id}', [NewsController::class, 'news']);
     
-    Route::prefix('programs')->group(function () {
-        Route::get('/', [ProgramController::class, 'index']);
-    });
+    // Route::prefix('programs')->group(function () {
+    //     Route::get('/', [ProgramController::class, 'index']);
+    // });
     
-    Route::get('/about-us', [AboutUsController::class, 'index']);
+    // Route::get('/about-us', [AboutUsController::class, 'index']);
     
-    Route::resource('contact-us', ContactController::class);
+    // Route::resource('contact-us', ContactController::class);
     
-    Route::get('/home', [HomeController::class, 'index']);
+    // Route::get('/home', [HomeController::class, 'index']);
     
-    Route::get('product', [ProductController::class, 'index']);
+    // Route::get('product', [ProductController::class, 'index']);
     
-    Route::prefix('product')->group(function($name){
-        Route::get('/{name}', [ProductController::class, 'show']);
-    });
+    // Route::prefix('product')->group(function($name){
+    //     Route::get('/{name}', [ProductController::class, 'show']);
+    // });
     
-    Route::get('/news', [NewsController::class, 'index']);
-    Route::get('/news/{id}', [NewsController::class, 'news']);
+    // Route::get('/news', [NewsController::class, 'index']);
+    // Route::get('/news/{id}', [NewsController::class, 'news']);
     
-    Route::prefix('programs')->group(function($name){
-        Route::get('/{name}', [ProductController::class, 'show']);
-    });
+    // Route::prefix('programs')->group(function($name){
+    //     Route::get('/{name}', [ProductController::class, 'show']);
+    // });
     
-    Route::get('/about-us', [AboutUsController::class, 'index']);
+    // Route::get('/about-us', [AboutUsController::class, 'index']);
     
-    Route::resource('contact-us', ContactController::class);
+    // Route::resource('contact-us', ContactController::class);
     
     Route::get('/dashboard', [HomeController::class, 'index']) -> name('dashboard');
     
@@ -110,4 +111,6 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/mahasiswa', MahasiswaController::class);
 
     Route::get('/khs/{ah}', [MahasiswaMatakuliahController::class, 'show']) -> name('mahasiswa.khs');
+
+    Route::resource('articles', ArticleUploadController::class);
 });

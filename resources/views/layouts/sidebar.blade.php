@@ -60,6 +60,15 @@
         </li>
 
         <li class="nav-item">
+          <a href={{route('articles.create')}} class="nav-link">
+            <i class="nav-icon fas fa-columns"></i>
+            <p>
+              Articles V2
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
             <p>
