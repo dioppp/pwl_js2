@@ -13,7 +13,7 @@
         }
     </style>
     <center>
-        <h5>Laporan Artikel</h4>
+        <h4>Laporan Artikel</h4>
     </center>
     <table class='table table-bordered'>
         <thead>
