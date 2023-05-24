@@ -43,7 +43,7 @@
             <!-- /.card-header -->
             <div class="card-body">
 
-                <form method="POST" action="{{ $url_form}}">
+                <form method="POST" action="{{ $url_form}}" enctype="multipart/form-data">
                     @csrf
                     {!! (isset($mhs))? method_field('PUT') : '' !!}
 
@@ -61,6 +61,18 @@
                         @error('nama')
                             <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
+                    </div>
+
+                    <div class="form-group">
+                      <label>Foto</label>
+                      <input class="form-control @error('foto') is-invalid @enderror" type="file" name="foto"
+                          value="{{ isset($mhs) ? $mhs->foto : old('foto') }}">
+                      @error('foto')
+                          <span class="error invalid-feedback">{{ $message }}</span>
+                      @enderror
+                      @isset($mhs)
+                          <img src="/storage/{{ $mhs->foto }}" width="50px">
+                      @endif
                     </div>
 
                     <div class="form-group">

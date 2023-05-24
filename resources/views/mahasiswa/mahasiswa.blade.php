@@ -51,6 +51,7 @@
                       <th>No</th>
                       <th>NIM</th>
                       <th>Nama</th>
+                      <th>Foto</th>
                       <th>Kelas</th>
                       <th>JK</th>
                       <th>HP</th>
@@ -59,11 +60,12 @@
                   </thead>
                   <tbody>
                     @if($mhs->count() > 0)
-                      @foreach($mhs as $i => $m)
+                      @foreach($paginate as $m)
                         <tr>
-                          <td>{{++$i}}</td>
+                          <td>{{$loop->iteration}}</td>
                           <td>{{$m->nim}}</td>
                           <td>{{$m->nama}}</td>
+                          <td><img src="storage/{{ $m->foto }}" width="100px"></td>
                           <td>{{$m->kelas->nama_kelas}}</td>
                           <td>{{$m->jk}}</td>
                           <td>{{$m->hp}}</td>

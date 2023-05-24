@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use App\Models\MahasiswaModel;
 use App\Models\Kelas;
+use App\Models\Mahasiswa_Matakuliah;
 use Illuminate\Http\Request;
+use Storage;
+use PDF;
 
 class MahasiswaController extends Controller
 {
@@ -49,8 +52,13 @@ class MahasiswaController extends Controller
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required|string|max:255',
             'hp' => 'required|digits_between:6,15',
-            'kelas' => 'required|exists:kelas,id'
+            'kelas' => 'required|exists:kelas,id',
+            'foto' => 'required|file'
         ]);
+
+        if ($request->file('foto')) {
+            $image_name = $request->file('foto')->store('images', 'public');
+        }
 
         $mahasiswa = new MahasiswaModel;
         $mahasiswa->nim = $request->get('nim');
@@ -60,11 +68,12 @@ class MahasiswaController extends Controller
         $mahasiswa->tanggal_lahir = $request->get('tanggal_lahir');
         $mahasiswa->alamat = $request->get('alamat');
         $mahasiswa->hp = $request->get('hp');
+        $mahasiswa->foto = $image_name;
         $mahasiswa->save();
 
         $kelas = new Kelas;
         $kelas->id = $request->get('kelas');
-
+        
         $mahasiswa->kelas()->associate($kelas);
         $mahasiswa->save();
 
@@ -109,6 +118,8 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $mahasiswa = MahasiswaModel::with('kelas')->where('id', $id)->first();
+
         $request->validate([
             'nim' => 'required|string|max:10|unique:mahasiswas,nim,'.$id,
             'nama' => 'required|string|max:50',
@@ -118,9 +129,17 @@ class MahasiswaController extends Controller
             'alamat' => 'required|string|max:255',
             'hp' => 'required|digits_between:6,15',
             'kelas' => 'required|exists:kelas,id',
+            'foto' => 'file'
         ]);
-
-        $mahasiswa = MahasiswaModel::with('kelas')->where('id', $id)->first();
+        
+        if ($request->file('foto')) {
+            if ($mahasiswa->foto && file_exists(storage_path('app/public/'.$mahasiswa->foto))) {
+                Storage::delete('public/'.$mahasiswa->foto);
+            }
+            $image_name = $request->file('foto')->store('images', 'public');
+            $mahasiswa->foto = $image_name;
+        }
+        
         $mahasiswa->nim = $request->get('nim');
         $mahasiswa->nama = $request->get('nama');
         $mahasiswa->jk = $request->get('jk');
@@ -149,8 +168,17 @@ class MahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        MahasiswaModel::where('id', '=', $id)->delete();
+        $data = MahasiswaModel::where('id', '=', $id)->delete();
+        Storage::delete('public/'.$data->foto);
         return redirect('/mahasiswa')
                         ->with('success', 'Data mahasiswa berhasil dihapus');
+    }
+
+    public function export($id)
+    {
+        $mhs = MahasiswaModel::where('id', $id)->first();
+        $mhsmatkul = Mahasiswa_Matakuliah::with('mahasiswa', 'matkul')->where('mahasiswa_id', $id)->get();
+        $pdf = PDF::loadView('mahasiswa.khs_pdf', compact('mhs','mhsmatkul'));
+        return $pdf->stream();
     }
 }

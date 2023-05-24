@@ -52,6 +52,7 @@
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item"><b>NIM : </b>{{$mhs->nim}}</li>
                                             <li class="list-group-item"><b>Nama : </b>{{$mhs->nama}}</li>
+                                            <li class="list-group-item"><b>Foto : </b>{{$mhs->foto}}</li>
                                             <li class="list-group-item"><b>Kelas : </b>{{$mhs->kelas->nama_kelas}}</li>
                                             <li class="list-group-item"><b>Jenis Kelamin : </b>{{$mhs->jk}}</li>
                                             <li class="list-group-item"><b>No. HP : </b>{{$mhs->hp}}</li>

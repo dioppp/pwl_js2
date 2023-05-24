@@ -50,6 +50,9 @@
                     </tbody>
                 </table>
                 <br>
+                <a class="btn btn-sm btn-danger" href="{{ url('mahasiswa/'. $mhs->id.'/khs_pdf')}}">Cetak PDF</a>
+                <br>
+                <br>
                 <a class="btn btn-success mt3" href="{{ route('mahasiswa.index')}}">Kembali</a>
             </div>
             <div class="card-footer">
