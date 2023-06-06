@@ -94,6 +94,8 @@ Route::middleware(['auth'])->group(function(){
     
     // Route::resource('contact-us', ContactController::class);
     
+    Route::get('/', [HomeController::class, 'index']);
+    
     Route::get('/dashboard', [HomeController::class, 'index']) -> name('dashboard');
     
     Route::get('/profile', [ProfileController::class, 'index']) -> name('profile');
@@ -109,12 +111,14 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/hobi', HobiModelController::class);
 
     Route::resource('/mahasiswa', MahasiswaController::class);
-
+    
+    Route::post('/mahasiswa/data', [MahasiswaController::class, 'data']);
+    
     Route::get('/khs/{ah}', [MahasiswaMatakuliahController::class, 'show']) -> name('mahasiswa.khs');
-
+    
     Route::resource('articles', ArticleUploadController::class);
-
+    
     Route::get('/article/cetak_pdf', [ArticleUploadController::class, 'cetak_pdf']);
-
+    
     Route::get('/mahasiswa/{id}/khs_pdf', [MahasiswaController::class, 'export']);
 });
